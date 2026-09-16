@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Toxic Positivity Generator</title>
+<style>
+  .tpg-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    max-width: 480px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  .tpg-wrapper h2 {
+    margin-top: 0;
+    color: #e65100;
+    font-size: 1.4rem;
+  }
+  .tpg-quote {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #4e342e;
+    padding: 1rem;
+    margin: 1rem 0;
+    background: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    transition: opacity 0.15s ease;
+  }
+  .tpg-quote.tpg-fade {
+    opacity: 0;
+  }
+  .tpg-button {
+    background: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .tpg-button:hover {
+    background: #fb8c00;
+  }
+  .tpg-button:active {
+    transform: scale(0.97);
+  }
+  .tpg-emoji {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="tpg-wrapper">
+  <span class="tpg-emoji">✨🙃✨</span>
+  <h2>Toxic Positivity Generator</h2>
+  <div class="tpg-quote" id="tpgQuote">Click the button for some deeply unhelpful advice.</div>
+  <button class="tpg-button" id="tpgButton" type="button">Generate Positivity</button>
+</div>
+
+<script>
+(function() {
+  var quotes = [
+    "Good vibes only! Just choose to be happy.",
+    "Everything happens for a reason, so don't ask questions.",
+    "Just stay positive and it'll all work out!",
+    "Other people have it worse, so you shouldn't feel sad.",
+    "If you just believe in yourself, anxiety magically disappears.",
+    "Failure isn't real if you don't think about it.",
+    "Smile more — happiness is a choice, not a chemical.",
+    "Don't be negative, it's not a good look on you.",
+    "You attract what you put out, so stop complaining.",
+    "There's always someone worse off, so cheer up.",
+    "Stress is just a mindset — think happy thoughts!",
+    "Just let go of the past and it'll stop hurting.",
+    "Crying won't fix anything, so try smiling instead.",
+    "Everything is exactly as it should be, no exceptions.",
+    "If you're grateful enough, nothing bad can happen.",
+    "Negativity is a choice — pick something better.",
+    "Rainbows only happen after storms, so hush and wait.",
+    "You just need more self-love, that'll solve it.",
+    "Bad days build character, so stop dwelling on it.",
+    "Just manifest a better life and it'll appear."
+  ];
+
+  var quoteEl = document.getElementById('tpgQuote');
+  var buttonEl = document.getElementById('tpgButton');
+  var lastIndex = -1;
+
+  function pickQuote() {
+    var index;
+    do {
+      index = Math.floor(Math.random() * quotes.length);
+    } while (index === lastIndex && quotes.length > 1);
+    lastIndex = index;
+    return quotes[index];
+  }
+
+  buttonEl.addEventListener('click', function() {
+    quoteEl.classList.add('tpg-fade');
+    setTimeout(function() {
+      quoteEl.textContent = pickQuote();
+      quoteEl.classList.remove('tpg-fade');
+    }, 150);
+  });
+})();
+</script>
+
+</body>
+</html>
